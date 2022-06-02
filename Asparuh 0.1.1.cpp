@@ -12,6 +12,7 @@
 using namespace std;
 
 ChessPiece create_new_piece();
+short int* convert_coordinates(char*);
 void Clear();
 
 int main()
@@ -30,6 +31,7 @@ ChessPiece create_new_piece()
 	int type, color;
 	char coordinates[3];
 
+	// Take the user input for the chess piece
 	cout << "Enter the following information" << endl << endl;
 	cout << "Chess Piece | Piece Index" << endl;
 	cout << " Pawn             0" << endl;
@@ -40,23 +42,46 @@ ChessPiece create_new_piece()
 	cout << " King             5" << endl;
 
 	cout << "piece type (0-5): ";
-	cin >> type;
+	cin >> type; // TYPE
 
 	cout << "\nColor | Index" << endl;
 	cout << "Black     0" << endl;
 	cout << "White     1" << endl;
 
 	cout << "color (0/1):";
-	cin >> color;
+	cin >> color; // COLOR
+
 	cout << "\ncoordinates (example: B2): ";
-	cin >> coordinates;
+	cin >> coordinates; // CONVENTIONAL COORDINATES
 
-	Clear();
+	// Convert the user input to 2-dimentional array coordinates
+	short int* array_coordinates = convert_coordinates(coordinates);
 
+	Clear(); // Clear the console
+
+	// Assign the values to the chess piece
 	piece.type = type;
 	piece.color = color;
+	piece.x_coordinate = array_coordinates[0];
+	piece.y_coordinate = array_coordinates[1];
 
 	return piece;
+}
+
+// This function takes input coordinates and converts them to 
+// 2-dimentional array coordinates
+short int* convert_coordinates(char* conventional_coordinates)
+{
+	short int coordinates[2];
+	short int x_coordinate = conventional_coordinates[0] - 65;
+	short int y_coordinate = 7 - (conventional_coordinates[1] - 49);
+
+	coordinates[0] = x_coordinate;
+	coordinates[1] = y_coordinate;
+
+	cout << "x - " << x_coordinate << endl;
+	cout << "y - " << y_coordinate << endl;
+	return coordinates;
 }
 
 // This function is used to clear the console
