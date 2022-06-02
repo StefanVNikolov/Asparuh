@@ -15,6 +15,6 @@ Asparuh is an offline C++ console application
 - Easy and free tool to analyze chess position and retrieve game statistics
 
 
-**Currently in process of building...**
-**Free Software, Hell Yeah!**
+**Currently in process of building...**<br />
+**Free Software, Hell Yeah!**<br />
 
