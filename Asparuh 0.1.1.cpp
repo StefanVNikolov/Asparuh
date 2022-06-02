@@ -4,10 +4,12 @@
 //| given the depth of search or a time limit    |
 //+----------------------------------------------+
 #include<iostream>
+#include "structs.cpp"
+
 using namespace std;
 
 int main()
 {
-	//Including a test
-	cout << "This is a test" << endl;
+	//Struct test
+	ChessPiece piece;
 }
