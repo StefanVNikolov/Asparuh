@@ -1,8 +1,7 @@
 # Asparuh 0.1.1
 ## Chess Game Generator
 
-Asparuh is an offline console application
-C++ -powered
+Asparuh is an offline C++ console application
 
 - Give depth or a time limit
 - Get a binary or a .txt file containing a tree
