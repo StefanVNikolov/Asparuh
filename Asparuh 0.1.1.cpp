@@ -8,6 +8,7 @@
 #include<string>
 #include <iomanip>
 #include "structs.cpp"
+#include "ChessBoard.cpp"
 
 using namespace std;
 
@@ -18,7 +19,17 @@ void Clear();
 int main()
 {
 	//Struct test
+	PieceSpecifications specs;
 	ChessPiece piece = create_new_piece();
+
+	//Chess board
+	ChessBoard chess_board = ChessBoard();
+	chess_board._Init_();
+	chess_board.checkIfEmpty(4, 4);
+	cin.ignore();
+	cin.get();
+
+		    
 }
 
 // This function creates a chess piece out of the user input
@@ -27,6 +38,8 @@ int main()
 ChessPiece create_new_piece()
 {
 	ChessPiece piece;
+	piece.exists = true;  //Chenges the exists status
+
 	int type, color;
 	char coordinates[3];
 
