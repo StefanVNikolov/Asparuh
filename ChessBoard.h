@@ -29,6 +29,12 @@ public:
 		}
 	}
 
+	//Places a pointer to an existing piece
+	void placePiece(ChessPiece* piece_ptr)
+	{
+		board[piece_ptr->y_coordinate][piece_ptr->x_coordinate] = piece_ptr;
+	}
+
 	bool checkIfEmpty(int x, int y)
 	{
 		bool occupied = false;

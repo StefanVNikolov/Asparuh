@@ -25,7 +25,10 @@ int main()
 	//Chess board
 	ChessBoard chess_board = ChessBoard();
 	chess_board._Init_();
-	chess_board.checkIfEmpty(4, 4);
+	chess_board.placePiece(&piece);
+	Clear(); // Clear the console
+	cout << chess_board.checkIfEmpty(piece.x_coordinate, piece.y_coordinate) << endl;    //Should Exist
+	cout << chess_board.checkIfEmpty(piece.x_coordinate -1, piece.y_coordinate) << endl; //Shouldn't Exist
 	cin.ignore();
 	cin.get();
 
@@ -65,8 +68,6 @@ ChessPiece create_new_piece()
 
 	cout << "\ncoordinates (example: B2): ";
 	cin >> coordinates; // CONVENTIONAL COORDINATES
-
-	Clear(); // Clear the console
 
 	// Assign the values to the chess piece
 	piece.type = type;
