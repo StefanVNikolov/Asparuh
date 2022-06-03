@@ -18,8 +18,7 @@ void Clear();
 int main()
 {
 	//Struct test
-	ChessPiece piece;
-	create_new_piece();
+	ChessPiece piece = create_new_piece();
 }
 
 // This function creates a chess piece out of the user input
@@ -54,16 +53,15 @@ ChessPiece create_new_piece()
 	cout << "\ncoordinates (example: B2): ";
 	cin >> coordinates; // CONVENTIONAL COORDINATES
 
-	// Convert the user input to 2-dimentional array coordinates
-	short int* array_coordinates = convert_coordinates(coordinates);
-
 	Clear(); // Clear the console
 
 	// Assign the values to the chess piece
 	piece.type = type;
 	piece.color = color;
-	piece.x_coordinate = array_coordinates[0];
-	piece.y_coordinate = array_coordinates[1];
+
+	// Convert the user input to 2-dimentional array coordinates
+	piece.x_coordinate = convert_coordinates(coordinates)[0];
+	piece.y_coordinate = convert_coordinates(coordinates)[1];
 
 	return piece;
 }
@@ -79,8 +77,6 @@ short int* convert_coordinates(char* conventional_coordinates)
 	coordinates[0] = x_coordinate;
 	coordinates[1] = y_coordinate;
 
-	cout << "x - " << x_coordinate << endl;
-	cout << "y - " << y_coordinate << endl;
 	return coordinates;
 }
 
