@@ -9,6 +9,8 @@
 #include <iomanip>
 #include "structs.cpp"
 #include "ChessBoard.cpp"
+#include "PositionFeeder_Text.cpp"
+#include "PositionFeeder_Text.h"
 
 using namespace std;
 
@@ -23,12 +25,15 @@ int main()
 	ChessPiece piece = create_new_piece();
 
 	//Chess board
-	ChessBoard chess_board = ChessBoard();
-	chess_board._Init_();
-	chess_board.placePiece(&piece);
+	//ChessBoard chess_board = ChessBoard();
+	//chess_board._Init_();
+	//chess_board.placePiece(&piece);
 	Clear(); // Clear the console
-	cout << chess_board.checkIfEmpty(piece.x_coordinate, piece.y_coordinate) << endl;    //Should Exist
-	cout << chess_board.checkIfEmpty(piece.x_coordinate -1, piece.y_coordinate) << endl; //Shouldn't Exist
+	//cout << chess_board.checkIfEmpty(piece.x_coordinate, piece.y_coordinate) << endl;    //Should Exist
+	//cout << chess_board.checkIfEmpty(piece.x_coordinate -1, piece.y_coordinate) << endl; //Shouldn't Exist
+
+	PositionFeeder_Text feeder;
+	feeder.extractInformation();
 	cin.ignore();
 	cin.get();
 
