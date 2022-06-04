@@ -44,6 +44,7 @@ public:
 		int ptr_color = piece_ptr->color;
 
 		//Assigning the values to the board
+		board[y][x].exists = true;
 		board[y][x].type = ptr_type;
 		board[y][x].color = ptr_color;
 
@@ -60,6 +61,49 @@ public:
 		//checks if the position is occupied or empty
 		(board[y][x].exists == true) ? occupied = true : occupied = false;
 		return occupied;
+	}
+
+	//3 PRINT TEST FUNCTIONS BECAUSE I AM LAZY
+	string printBoard_type()
+	{
+		string matrix;
+		for (int current_column = 0; current_column < grid_size; current_column++)
+		{
+			for (int current_row = 0; current_row < grid_size; current_row++)
+			{
+				matrix += to_string(board[current_column][current_row].type) + " ";
+			}
+			matrix += "\n";
+		}
+		return matrix;
+	}
+
+	string printBoard_color()
+	{
+		string matrix;
+		for (int current_column = 0; current_column < grid_size; current_column++)
+		{
+			for (int current_row = 0; current_row < grid_size; current_row++)
+			{
+				matrix += to_string(board[current_column][current_row].color) + " ";
+			}
+			matrix += "\n";
+		}
+		return matrix;
+	}
+
+	string printBoard_exists()
+	{
+		string matrix;
+		for (int current_column = 0; current_column < grid_size; current_column++)
+		{
+			for (int current_row = 0; current_row < grid_size; current_row++)
+			{
+				matrix += to_string(board[current_column][current_row].exists) + " ";
+			}
+			matrix += "\n";
+		}
+		return matrix;
 	}
 
 };
