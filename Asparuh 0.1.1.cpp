@@ -22,18 +22,17 @@ int main()
 {
 	//Struct test
 	PieceSpecifications specs;
-	ChessPiece piece = create_new_piece();
 
 	//Chess board
-	//ChessBoard chess_board = ChessBoard();
-	//chess_board._Init_();
-	//chess_board.placePiece(&piece);
-	Clear(); // Clear the console
-	//cout << chess_board.checkIfEmpty(piece.x_coordinate, piece.y_coordinate) << endl;    //Should Exist
-	//cout << chess_board.checkIfEmpty(piece.x_coordinate -1, piece.y_coordinate) << endl; //Shouldn't Exist
+	ChessBoard chess_board = ChessBoard();
+	chess_board._Init_();
+	//Clear(); // Clear the console
 
+	//PositionFeeder Test
 	PositionFeeder_Text feeder;
-	feeder.extractInformation();
+	string feed_report = feeder.importInformation(chess_board);
+
+	cout << feed_report;
 	cin.ignore();
 	cin.get();
 

@@ -17,10 +17,13 @@ class PositionFeeder_Text
 {
 public:
 
-	vector<ChessPiece> extractInformation()
+    //This function reads a file containing the start position
+    //Loads the start position on a chess board board
+    //Returns a log with the created pieces (+ spec-info)
+	string importInformation(ChessBoard &board)
 	{
-        //Create ChessPieces holder vector
-        vector<ChessPiece> piecesFeed;
+        //Creates a log holder;
+        string log;
 
 		//Opens the text file
 		ifstream Feed(fileName);
@@ -30,7 +33,6 @@ public:
             cout << "File not found" << endl;
         else
         {
-            PieceSpecifications specs;
             //Feed data per log (line)
             int type, color;
             char position[3];
@@ -51,22 +53,24 @@ public:
                 current_chess_piece.x_coordinate = convert_coordinates(position)[0];
                 current_chess_piece.y_coordinate = convert_coordinates(position)[1];
 
-                //Add the piece to the holder vector
-                piecesFeed.push_back(current_chess_piece);
-
-                cout << specs.colors[color] << " " << specs.types[type] << " was positioned on " << position << endl;
+                string current_log = board.placePiece(&current_chess_piece); //Using the chessboard place function (actual positioning)
+                log += current_log;                                          //Adding the placement log to the main log
+                
                 //read the beginning of the next data record
                 Feed >> type;
             }
+            //Closing the feed file after the last line
             Feed.close();
         }
-        return piecesFeed;
+        return log;
 	}
     // This function takes input coordinates and converts them to 
     // 2-dimentional array coordinates
     short int* convert_coordinates(char* conventional_coordinates)
     {
+        //int coordinates holder
         short int coordinates[2];
+        //Converting the ASCII char index to the actual 2D array coordinate
         short int x_coordinate = conventional_coordinates[0] - 65;
         short int y_coordinate = 7 - (conventional_coordinates[1] - 49);
 
