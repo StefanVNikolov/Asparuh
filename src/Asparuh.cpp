@@ -44,7 +44,6 @@ int main()
 }
 
 // This function creates a chess piece out of the user input
-// Easy to follow menu 
 // Accepts the index as an input
 ChessPiece create_new_piece()
 {
