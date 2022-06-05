@@ -1,5 +1,0 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Asparuh 0.1.1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Asparuh.cpp
-C:\Users\stefn\source\repos\Asparuh 0.1.1\Asparuh 0.1.1\Asparuh.cpp(102): warning C4172: returning address of local variable or temporary: coordinates
-C:\Users\stefn\source\repos\Asparuh 0.1.1\Asparuh 0.1.1\PositionFeeder_Text.h(80): warning C4172: returning address of local variable or temporary: coordinates
-  Asparuh 0.1.1.vcxproj -> C:\Users\stefn\source\repos\Asparuh 0.1.1\x64\Debug\src.exe
