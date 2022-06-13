@@ -11,6 +11,7 @@
 #include "ChessBoard.cpp"
 #include "PositionFeeder_Text.cpp"
 #include "PositionFeeder_Text.h"
+#include "HTML_viewer.h"
 
 using namespace std;
 
@@ -26,71 +27,25 @@ int main()
 	//Chess board
 	ChessBoard chess_board = ChessBoard();
 	chess_board._Init_();
-	cout << chess_board.printBoard_y();
-	//Clear(); // Clear the console
 
 	//PositionFeeder Test
 	PositionFeeder_Text feeder;
 	string feed_report = feeder.importInformation(chess_board);
 
 	cout << feed_report;
-	cin.ignore();
-	cin.get();
-	//Testing the remove function
-	
+	//Testing the remove function	
 	cout << chess_board.movePiece(chess_board.board[7][7], 4, 4);
 
-	//Clear(); // Clear the console
-	cout << chess_board.printBoard_exists();
-	cin.ignore();
-	cin.get();
+	Clear(); // Clear the console
+	HTML_viewer viewer;
+	string chess_possition = viewer.generateHTML_file(chess_board);
+	cout << chess_possition;
+	viewer.createHTML_file(chess_possition);
 
 		    
 }
 
-// This function creates a chess piece out of the user input
-// Accepts the index as an input
-ChessPiece create_new_piece()
-{
-	ChessPiece piece;
-	piece.exists = true;  //Chenges the exists status
 
-	int type, color;
-	char coordinates[3];
-
-	// Take the user input for the chess piece
-	cout << "Enter the following information" << endl << endl;
-	cout << "Chess Piece | Piece Index" << endl;
-	cout << " Pawn             0" << endl;
-	cout << " Knight           1" << endl;
-	cout << " Bishop           2" << endl;
-	cout << " Rook             3" << endl;
-	cout << " Queen            4" << endl;
-	cout << " King             5" << endl;
-
-	cout << "piece type (0-5): ";
-	cin >> type; // TYPE
-
-	cout << "\nColor | Index" << endl;
-	cout << "Black     0" << endl;
-	cout << "White     1" << endl;
-
-	cout << "color (0/1):";
-	cin >> color; // COLOR
-
-	cout << "\ncoordinates (example: B2): ";
-	cin >> coordinates; // CONVENTIONAL COORDINATES
-
-	// Assign the values to the chess piece
-	piece.type = type;
-	piece.color = color;
-
-	// Convert the user input to 2-dimentional array coordinates
-	piece.x_coordinate = convert_coordinates(coordinates)[0];
-	piece.y_coordinate = convert_coordinates(coordinates)[1];
-
-	return piece;
-}
 
 // This function takes input coordinates and converts them to 
 // 2-dimentional array coordinates

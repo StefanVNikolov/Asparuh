@@ -113,47 +113,10 @@ public:
 		return occupied;
 	}
 
-	//3 PRINT TEST FUNCTIONS BECAUSE I AM LAZY
-	string printBoard_type()
+	//Returns the grid size
+	int returnGridSize()
 	{
-		string matrix;
-		for (int current_column = 0; current_column < grid_size; current_column++)
-		{
-			for (int current_row = 0; current_row < grid_size; current_row++)
-			{
-				matrix += to_string(board[current_column][current_row].type) + " ";
-			}
-			matrix += "\n";
-		}
-		return matrix;
-	}
-
-	string printBoard_color()
-	{
-		string matrix;
-		for (int current_column = 0; current_column < grid_size; current_column++)
-		{
-			for (int current_row = 0; current_row < grid_size; current_row++)
-			{
-				matrix += to_string(board[current_column][current_row].color) + " ";
-			}
-			matrix += "\n";
-		}
-		return matrix;
-	}
-
-	string printBoard_exists()
-	{
-		string matrix;
-		for (int current_column = 0; current_column < grid_size; current_column++)
-		{
-			for (int current_row = 0; current_row < grid_size; current_row++)
-			{
-				matrix += to_string(board[current_column][current_row].exists) + " ";
-			}
-			matrix += "\n";
-		}
-		return matrix;
+		return grid_size;
 	}
 
 };

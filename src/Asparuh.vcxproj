@@ -130,11 +130,13 @@
   <ItemGroup>
     <ClCompile Include="Asparuh.cpp" />
     <ClCompile Include="ChessBoard.cpp" />
+    <ClCompile Include="HTML_viewer.cpp" />
     <ClCompile Include="PositionFeeder_Text.cpp" />
     <ClCompile Include="structs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h" />
+    <ClInclude Include="HTML_viewer.h" />
     <ClInclude Include="PositionFeeder_Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

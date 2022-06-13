@@ -22,4 +22,7 @@ struct PieceSpecifications {
 	//Holds the lable of the corresponding index that a chess piece struct holds 
 	string types[6] = { "pawn", "knight","bishop","rook", "queen", "king" };
 	string colors[2] = { "black", "white" };
+
+	string unicodeWhiteChessPieces[6] = { "wpawn.png", "wknight.png" ,"wbishop.png" ,"wrook.png" ,"wqueen.png" ,"wking.png" };
+	string unicodeBlackChessPieces[6] = { "bpawn.png", "bknight.png" ,"bbishop.png" ,"brook.png" ,"bqueen.png" ,"bking.png" };
 };

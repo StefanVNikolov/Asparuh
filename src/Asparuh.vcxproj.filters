@@ -27,12 +27,18 @@
     <ClCompile Include="PositionFeeder_Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HTML_viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChessBoard.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="PositionFeeder_Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HTML_viewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
