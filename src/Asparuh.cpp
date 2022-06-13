@@ -35,6 +35,8 @@ int main()
 	cout << feed_report;
 	cin.ignore();
 	cin.get();
+	//Testing the remove function
+	chess_board.removePiece(7, 6);
 	Clear(); // Clear the console
 	cout << chess_board.printBoard_exists();
 	cin.ignore();

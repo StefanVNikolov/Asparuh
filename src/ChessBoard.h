@@ -55,6 +55,24 @@ public:
 		return log;
 	}
 
+	//Removes a piece from an occupied position
+	string removePiece(int y, int x)
+	{
+		//Creating a log holder for the function
+		string log;
+
+		//Assigning the values to the board
+		board[y][x].exists = false;
+		board[y][x].type = NULL;
+		board[y][x].color = NULL;
+
+		//Adding information about the created piece to the log
+		string address = "[" + to_string(x) + ", " + to_string(y) + "]";
+		log += address + " was cleared.\n";
+
+		return log;
+	}
+
 	bool checkIfEmpty(int x, int y)
 	{
 		bool occupied = false;
