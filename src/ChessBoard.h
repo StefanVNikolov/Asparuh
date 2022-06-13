@@ -26,6 +26,9 @@ public:
 		{
 			for (int current_x = 0; current_x < grid_size; current_x++)
 			{
+				null_piece.exists = false;
+				null_piece.x_coordinate = current_x;
+				null_piece.y_coordinate = current_y;
 				board[current_y][current_x] = null_piece;
 			}
 		}
@@ -69,6 +72,35 @@ public:
 		//Adding information about the created piece to the log
 		string address = "[" + to_string(x) + ", " + to_string(y) + "]";
 		log += address + " was cleared.\n";
+
+		return log;
+	}
+
+	//Moves a piece to a new location
+	string movePiece(ChessPiece piece_ptr, int new_y, int new_x)
+	{
+		//Creating a log holder for the function
+		string log;
+
+		//Initializing values to unpointerize the piece
+		int x = piece_ptr.x_coordinate;
+		int y = piece_ptr.y_coordinate;
+		int ptr_type = piece_ptr.type;
+		int ptr_color = piece_ptr.color;
+
+		//Assigning the values to the new position
+		board[new_y][new_x].exists = true;
+		board[new_y][new_x].type = ptr_type;
+		board[new_y][new_x].color = ptr_color;
+
+		//Clearing the old position
+		removePiece(y, x);
+
+		//Adding information about the created piece to the log
+		string old_address = "[" + to_string(x) + ", " + to_string(y) + "]";
+		string new_address = "[" + to_string(new_x) + ", " + to_string(new_y) + "]";
+		log += specs.colors[board[new_y][new_x].color] + " " + specs.types[board[new_y][new_x].type];
+		log += " moved from " + old_address + " to " + new_address + "\n";
 
 		return log;
 	}

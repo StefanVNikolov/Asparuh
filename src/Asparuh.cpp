@@ -26,6 +26,7 @@ int main()
 	//Chess board
 	ChessBoard chess_board = ChessBoard();
 	chess_board._Init_();
+	cout << chess_board.printBoard_y();
 	//Clear(); // Clear the console
 
 	//PositionFeeder Test
@@ -36,8 +37,10 @@ int main()
 	cin.ignore();
 	cin.get();
 	//Testing the remove function
-	chess_board.removePiece(7, 6);
-	Clear(); // Clear the console
+	
+	cout << chess_board.movePiece(chess_board.board[7][7], 4, 4);
+
+	//Clear(); // Clear the console
 	cout << chess_board.printBoard_exists();
 	cin.ignore();
 	cin.get();
