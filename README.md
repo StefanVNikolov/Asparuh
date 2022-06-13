@@ -1,4 +1,4 @@
-# Asparuh 0.1.1
+# Asparuh
 ## Chess Game Generator
 
 Asparuh is an offline C++ console application
@@ -13,7 +13,3 @@ Asparuh is an offline C++ console application
 - Create custom chess pieces with new movement constraints 
 - Import and save binary or .txt files if previous trees are available
 - Easy and free tool to analyze chess position and retrieve game statistics
-
-
-**Currently in process of building...**<br />
-**Free Software, Hell Yeah!**<br />
