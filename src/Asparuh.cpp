@@ -12,16 +12,16 @@
 #include "PositionFeeder_Text.cpp"
 #include "PositionFeeder_Text.h"
 #include "HTML_viewer.h"
+#include "Engine.h"
 
 using namespace std;
 
-ChessPiece create_new_piece();
 short int* convert_coordinates(char*);
 void Clear();
 
 int main()
 {
-	//Struct test
+	/*//Struct test
 	PieceSpecifications specs;
 
 	//Chess board
@@ -33,14 +33,27 @@ int main()
 	string feed_report = feeder.importInformation(chess_board);
 
 	cout << feed_report;
-	//Testing the remove function	
-	cout << chess_board.movePiece(chess_board.board[7][7], 4, 4);
+	//Testing the move function	
+	cout << chess_board.movePiece(chess_board.board[6][4], 4, 4);
+	cout << chess_board.movePiece(chess_board.board[1][4], 3, 4);
 
 	Clear(); // Clear the console
 	HTML_viewer viewer;
 	string chess_possition = viewer.generateHTML_file(chess_board);
 	cout << chess_possition;
-	viewer.createHTML_file(chess_possition);
+	viewer.createHTML_file(chess_possition);*/
+
+	Engine e;
+	auto ptr = e.moveWithAddition(3, 4, -10) + 0;
+	int* y_ptr = ptr + 0;
+	int* x_ptr = ptr + 1;
+
+	int y = *y_ptr;
+	int x = *x_ptr;
+
+	cout << to_string(y) + " " + to_string(x);
+
+	
 
 		    
 }

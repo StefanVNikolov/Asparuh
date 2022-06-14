@@ -1,7 +1,6 @@
 #include<iostream>
 #include<fstream>
 #include<string>
-#include<vector>
 #include "structs.cpp"
 
 using namespace std;
