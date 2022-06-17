@@ -89,5 +89,15 @@ public:
 		return coordinates;
 	}
 
+	//Calculates the distance between 2 points
+	int calculateDistance(int y_from, int x_from, int y_to, int x_to)
+	{
+		int index_from = y_from * 8 + (x_from + 1);
+		int index_to = y_to * 8 + (x_to + 1);
+		int distance = index_to - index_from;
+
+		return distance;
+	}
+
 };
 
