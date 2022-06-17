@@ -1,5 +1,6 @@
 #include <iostream>
 #include<string>
+#include<vector>
 #include "structs.cpp"
 #include "ChessBoard.h"
 using namespace std;
@@ -13,38 +14,48 @@ public:
 	string checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
 	{
 		int piece_type = board.board[piece_y_coordinate][piece_x_coordinate].type;
-		string log;
+		string available_coordinates;
 
 		switch (piece_type) {
 			case 0: //Pawn case
 			{
-				log += "Pawn legal moves---\n";
 				break;
 			}
 			case 1: //Knight case
 			{
-				log += "Knight legal moves---\n";
+				available_coordinates += "Knight moves___\n";
 
+				int move_indeces[8] = {-17, -15, -10, -6, 6, 10, 15, 17};
+				for (int index: move_indeces)
+				{
+					int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + index;
+					if (new_index > 0 && new_index <= 64)
+					{
+						auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, index);
+						int y = *(coordinates + 0);
+						int x = *(coordinates + 1);
+						if (y >= 0 && y <= 7 && x>=0 && x <= 7)
+						{
+							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+						}
+					}
+				}
 				break;
 			}
-			case 2: //Knight case
+			case 2: //Bishop case
 			{
-				log += "Bishop legal moves---\n";
 				break;
 			}
-			case 3: //Knight case
+			case 3: //Rook case
 			{
-				log += "Rook legal moves---\n";
 				break;
 			}
-			case 4: //Knight case
+			case 4: //Queen case
 			{
-				log += "Queen legal moves---\n";
 				break;
 			}
-			case 5: //Knight case
+			case 5: //King case
 			{
-				log += "King legal moves---\n";
 				break;
 			}
 			default: //In process
@@ -52,7 +63,7 @@ public:
 				break;
 			}
 		}
-		return log;
+		return available_coordinates;
 	}
 	//Allows to move a piece with only one number
 	//Example moveWithAddition(y, x, 19) will return the new coordinates
@@ -63,16 +74,14 @@ public:
 
 		//coordinates holder
 		int new_y, new_x;
-		new_x = 7;
 		int coordinates[2];
 
 		//converting the new index to a position
-		if (new_index % 8 != 0)
-		{
-			new_x = (new_index % 8) - 1;
-			coordinates[1] = new_x;
-		}
+		new_index -= 1;
+		new_x = new_index - ((new_index / 8) * 8);
 		new_y = (new_index - new_x) / 8;
+
+		coordinates[1] = new_x;
 		coordinates[0] = new_y;
 
 		

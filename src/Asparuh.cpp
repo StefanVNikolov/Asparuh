@@ -21,7 +21,7 @@ void Clear();
 
 int main()
 {
-	/*//Struct test
+	//Struct test
 	PieceSpecifications specs;
 
 	//Chess board
@@ -40,18 +40,14 @@ int main()
 	Clear(); // Clear the console
 	HTML_viewer viewer;
 	string chess_possition = viewer.generateHTML_file(chess_board);
-	cout << chess_possition;
-	viewer.createHTML_file(chess_possition);*/
+	//cout << chess_possition;
+	viewer.createHTML_file(chess_possition);
 
 	Engine e;
-	auto ptr = e.moveWithAddition(3, 4, -10) + 0;
-	int* y_ptr = ptr + 0;
-	int* x_ptr = ptr + 1;
+	auto coordinates = e.checkAvailableMovesFor(chess_board, 7, 1);
 
-	int y = *y_ptr;
-	int x = *x_ptr;
+	cout << coordinates;
 
-	cout << to_string(y) + " " + to_string(x);
 
 	
 
