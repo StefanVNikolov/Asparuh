@@ -10,6 +10,9 @@ using namespace std;
 class Engine
 {
 public:
+	//Move highlighter holder
+	vector <int> highlight_indeces;
+
 	//Checks for legal moves for a given chess piece
 	string checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
 	{
@@ -45,6 +48,14 @@ public:
 							int x = *(coordinates + 1);
 							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 							{
+								//Pushing the coordinates to highlight in the HTML file
+								int coordinates_h[2]{};
+								coordinates_h[0] = y;
+								coordinates_h[1] = x;
+								highlight_indeces.push_back(new_index);
+
+
+								//Adding information to the return log
 								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							}
 						}
