@@ -36,6 +36,7 @@ int main()
 	//Testing the move function	
 	cout << chess_board.movePiece(chess_board.board[6][4], 4, 4);
 	cout << chess_board.movePiece(chess_board.board[1][4], 3, 4);
+	cout << chess_board.movePiece(chess_board.board[7][1], 3, 3);
 
 	Clear(); // Clear the console
 	HTML_viewer viewer;
@@ -44,7 +45,7 @@ int main()
 	viewer.createHTML_file(chess_possition);
 
 	Engine e;
-	auto coordinates = e.checkAvailableMovesFor(chess_board, 7, 1);
+	auto coordinates = e.checkAvailableMovesFor(chess_board, 3, 3);
 
 	cout << coordinates;
 
