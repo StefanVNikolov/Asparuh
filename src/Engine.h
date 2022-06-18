@@ -25,18 +25,28 @@ public:
 			{
 				available_coordinates += "Knight moves___\n";
 
-				int move_indeces[8] = {-17, -15, -10, -6, 6, 10, 15, 17};
-				for (int index: move_indeces)
+				int move_destinations[8][2] = { 
+					{-2, -1}, {-2, 1}, {2, -1}, {2, 1},
+					{-1, -2}, {-1, 2}, {1, -2}, {1, 2} };
+
+				for (auto destination : move_destinations)
 				{
-					int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + index;
-					if (new_index > 0 && new_index <= 64)
+					int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
+						destination[0], destination[1]);
+
+
+					if (distance != 0)
 					{
-						auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, index);
-						int y = *(coordinates + 0);
-						int x = *(coordinates + 1);
-						if (y >= 0 && y <= 7 && x>=0 && x <= 7)
+						int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + distance;
+						if (new_index > 0 && new_index <= 64)
 						{
-							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+							auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, distance);
+							int y = *(coordinates + 0);
+							int x = *(coordinates + 1);
+							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
+							{
+								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+							}
 						}
 					}
 				}
@@ -90,11 +100,19 @@ public:
 	}
 
 	//Calculates the distance between 2 points
-	int calculateDistance(int y_from, int x_from, int y_to, int x_to)
+	int calculateDistance(int y_from, int x_from, int y_additive, int x_additive)
 	{
+		int y_to = y_from + y_additive;
+		int x_to = x_from + x_additive;
+
 		int index_from = y_from * 8 + (x_from + 1);
 		int index_to = y_to * 8 + (x_to + 1);
 		int distance = index_to - index_from;
+
+		if (y_to < 0 || y_to > 7 || x_to < 0 || x_to > 7)
+		{
+			return 0;
+		}
 
 		return distance;
 	}
