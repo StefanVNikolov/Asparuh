@@ -18,7 +18,7 @@ public:
 	{
 		//Taking piece stats
 		int piece_type = board.board[piece_y_coordinate][piece_x_coordinate].type;
-		int piece_color = board.board[piece_y_coordinate][piece_x_coordinate].type;
+		int piece_color = board.board[piece_y_coordinate][piece_x_coordinate].color;
 
 		string available_coordinates;
 
@@ -52,8 +52,8 @@ public:
 						if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 						{
 							//Taking the cell information
-							bool occupancy_status = board.board[piece_y_coordinate][piece_x_coordinate].exists;
-							int occupancy_color = board.board[piece_y_coordinate][piece_x_coordinate].color;
+							bool occupancy_status = board.board[y][x].exists;
+							int occupancy_color = board.board[y][x].color;
 
 							if (occupancy_status == false || (occupancy_status == true && occupancy_color != piece_color))
 							{
