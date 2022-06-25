@@ -42,7 +42,7 @@ int main()
 	cout << chess_board.movePiece(chess_board.board[7][6], 2, 5);
 
 	Engine e;
-	auto coordinates = e.checkAvailableMovesFor(chess_board, 0, 4);
+	//auto coordinates = e.checkAvailableMovesFor(chess_board, 0, 1);
 
 	Clear(); // Clear the console
 	vector <int> indeces_h = e.highlight_indeces;

@@ -16,7 +16,10 @@ public:
 	//Checks for legal moves for a given chess piece
 	string checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
 	{
+		//Taking piece stats
 		int piece_type = board.board[piece_y_coordinate][piece_x_coordinate].type;
+		int piece_color = board.board[piece_y_coordinate][piece_x_coordinate].type;
+
 		string available_coordinates;
 
 		switch (piece_type) {
@@ -48,11 +51,18 @@ public:
 						int x = *(coordinates + 1);
 						if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 						{
-							//Pushing the coordinates to highlight in the HTML file
-							int coordinates_h[2]{};
-							coordinates_h[0] = y;
-							coordinates_h[1] = x;
-							highlight_indeces.push_back(new_index);
+							//Taking the cell information
+							bool occupancy_status = board.board[piece_y_coordinate][piece_x_coordinate].exists;
+							int occupancy_color = board.board[piece_y_coordinate][piece_x_coordinate].color;
+
+							if (occupancy_status == false || (occupancy_status == true && occupancy_color != piece_color))
+							{
+								//Pushing the coordinates to highlight in the HTML file
+								int coordinates_h[2]{};
+								coordinates_h[0] = y;
+								coordinates_h[1] = x;
+								highlight_indeces.push_back(new_index);
+							}
 
 
 							//Adding information to the return log

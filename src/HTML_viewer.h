@@ -37,21 +37,25 @@ public:
 
 			for (int current_x = 1; current_x <= board_size; current_x++)
 			{
+				bool marked_h = false;
 				int current_index = (current_y - 1) * 8 + ((current_x-1) + 1);
 
 				//Creating the cell
 				string cell_html;
 				cell_html += "<td style=\"width: 100px; height: 100px;";
 				//Checking if the cell is even or odd -> color
-				if (current_index == indeces_h[current_index_h])
-				{
-					cell_html += highlighted_color;
-					if (current_index_h != vector_size - 1)
+				if (vector_size > 0) {
+					if (current_index == indeces_h[current_index_h])
 					{
-						current_index_h += 1;
+						cell_html += highlighted_color;
+						marked_h = true;
+						if (current_index_h != vector_size - 1)
+						{
+							current_index_h += 1;
+						}
 					}
 				}
-				else
+				if(marked_h == false)
 				{
 					cell_html += (color_type) ? even_color : odd_color;
 					color_type = !color_type;
