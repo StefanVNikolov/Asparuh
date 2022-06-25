@@ -65,7 +65,6 @@ public:
 		}
 		case 2: //Bishop case
 		{
-
 			available_coordinates += "Bishop moves___\n";
 
 			int move_destinations[8][2] = {
@@ -77,7 +76,7 @@ public:
 				for (int distance_increase = 1; distance_increase <= 7; distance_increase++)
 				{
 					int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
-						destination[0]* distance_increase, destination[1]* distance_increase);
+						destination[0] * distance_increase, destination[1] * distance_increase);
 
 
 					if (distance != 0)
@@ -109,14 +108,128 @@ public:
 		}
 		case 3: //Rook case
 		{
+			available_coordinates += "Rook moves___\n";
+
+			int move_destinations[8][2] = {
+				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+
+			for (auto destination : move_destinations)
+			{
+				//Multiples the length of the direction 
+				for (int distance_increase = 1; distance_increase <= 7; distance_increase++)
+				{
+					int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
+						destination[0] * distance_increase, destination[1] * distance_increase);
+
+
+					if (distance != 0)
+					{
+						int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + distance;
+						if (new_index > 0 && new_index <= 64)
+						{
+							auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, distance);
+							int y = *(coordinates + 0);
+							int x = *(coordinates + 1);
+							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
+							{
+								//Pushing the coordinates to highlight in the HTML file
+								int coordinates_h[2]{};
+								coordinates_h[0] = y;
+								coordinates_h[1] = x;
+								highlight_indeces.push_back(new_index);
+
+
+								//Adding information to the return log
+								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+							}
+						}
+					}
+				}
+			}
+
 			break;
 		}
 		case 4: //Queen case
 		{
+			available_coordinates += "Queen moves___\n";
+
+			int move_destinations[8][2] = {
+				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},
+				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+
+			for (auto destination : move_destinations)
+			{
+				//Multiples the length of the direction 
+				for (int distance_increase = 1; distance_increase <= 7; distance_increase++)
+				{
+					int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
+						destination[0] * distance_increase, destination[1] * distance_increase);
+
+
+					if (distance != 0)
+					{
+						int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + distance;
+						if (new_index > 0 && new_index <= 64)
+						{
+							auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, distance);
+							int y = *(coordinates + 0);
+							int x = *(coordinates + 1);
+							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
+							{
+								//Pushing the coordinates to highlight in the HTML file
+								int coordinates_h[2]{};
+								coordinates_h[0] = y;
+								coordinates_h[1] = x;
+								highlight_indeces.push_back(new_index);
+
+
+								//Adding information to the return log
+								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+							}
+						}
+					}
+				}
+			}
 			break;
 		}
 		case 5: //King case
 		{
+
+			available_coordinates += "King moves___\n";
+
+			int move_destinations[8][2] = {
+				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},
+				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+
+			for (auto destination : move_destinations)
+			{
+				int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
+					destination[0], destination[1]);
+
+
+				if (distance != 0)
+				{
+					int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + distance;
+					if (new_index > 0 && new_index <= 64)
+					{
+						auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, distance);
+						int y = *(coordinates + 0);
+						int x = *(coordinates + 1);
+						if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
+						{
+							//Pushing the coordinates to highlight in the HTML file
+							int coordinates_h[2]{};
+							coordinates_h[0] = y;
+							coordinates_h[1] = x;
+							highlight_indeces.push_back(new_index);
+
+
+							//Adding information to the return log
+							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+						}
+					}
+				}
+			}
 			break;
 		}
 		default: //In process
