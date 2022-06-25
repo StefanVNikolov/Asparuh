@@ -40,9 +40,11 @@ int main()
 	cout << chess_board.movePiece(chess_board.board[1][4], 3, 4);
 	cout << chess_board.movePiece(chess_board.board[7][1], 3, 3);
 	cout << chess_board.movePiece(chess_board.board[7][6], 2, 5);
+	cout << chess_board.movePiece(chess_board.board[0][0], 3, 1);
+	cout << chess_board.movePiece(chess_board.board[7][7], 4, 2);
 
 	Engine e;
-	auto coordinates = e.checkAvailableMovesFor(chess_board, 0, 1);
+	auto coordinates = e.checkAvailableMovesFor(chess_board, 7, 5);
 
 	Clear(); // Clear the console
 	vector <int> indeces_h = e.highlight_indeces;

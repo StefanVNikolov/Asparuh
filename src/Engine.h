@@ -77,7 +77,7 @@ public:
 		{
 			available_coordinates += "Bishop moves___\n";
 
-			int move_destinations[8][2] = {
+			int move_destinations[4][2] = {
 				{-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
 
 			for (auto destination : move_destinations)
@@ -99,11 +99,30 @@ public:
 							int x = *(coordinates + 1);
 							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 							{
-								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
-								coordinates_h[0] = y;
-								coordinates_h[1] = x;
-								highlight_indeces.push_back(new_index);
+								//Taking the cell information
+								bool occupancy_status = board.board[y][x].exists;
+								int occupancy_color = board.board[y][x].color;
+
+								if (occupancy_status == false)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+								}
+								else if(occupancy_status == true && occupancy_color != piece_color)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+									break;
+								}
+								else {
+									break;
+								}
 
 
 								//Adding information to the return log
@@ -120,7 +139,7 @@ public:
 		{
 			available_coordinates += "Rook moves___\n";
 
-			int move_destinations[8][2] = {
+			int move_destinations[4][2] = {
 				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 			for (auto destination : move_destinations)
@@ -142,11 +161,30 @@ public:
 							int x = *(coordinates + 1);
 							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 							{
-								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
-								coordinates_h[0] = y;
-								coordinates_h[1] = x;
-								highlight_indeces.push_back(new_index);
+								//Taking the cell information
+								bool occupancy_status = board.board[y][x].exists;
+								int occupancy_color = board.board[y][x].color;
+
+								if (occupancy_status == false)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+								}
+								else if (occupancy_status == true && occupancy_color != piece_color)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+									break;
+								}
+								else {
+									break;
+								}
 
 
 								//Adding information to the return log
@@ -186,11 +224,30 @@ public:
 							int x = *(coordinates + 1);
 							if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 							{
-								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
-								coordinates_h[0] = y;
-								coordinates_h[1] = x;
-								highlight_indeces.push_back(new_index);
+								//Taking the cell information
+								bool occupancy_status = board.board[y][x].exists;
+								int occupancy_color = board.board[y][x].color;
+
+								if (occupancy_status == false)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+								}
+								else if (occupancy_status == true && occupancy_color != piece_color)
+								{
+									//Pushing the coordinates to highlight in the HTML file
+									int coordinates_h[2]{};
+									coordinates_h[0] = y;
+									coordinates_h[1] = x;
+									highlight_indeces.push_back(new_index);
+									break;
+								}
+								else {
+									break;
+								}
 
 
 								//Adding information to the return log
@@ -207,8 +264,8 @@ public:
 
 			available_coordinates += "King moves___\n";
 
-			int move_destinations[8][2] = {
-				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},
+			int move_destinations[8][2] = { 
+				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},     
 				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
 
 			for (auto destination : move_destinations)
@@ -227,11 +284,18 @@ public:
 						int x = *(coordinates + 1);
 						if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
 						{
-							//Pushing the coordinates to highlight in the HTML file
-							int coordinates_h[2]{};
-							coordinates_h[0] = y;
-							coordinates_h[1] = x;
-							highlight_indeces.push_back(new_index);
+							//Taking the cell information
+							bool occupancy_status = board.board[y][x].exists;
+							int occupancy_color = board.board[y][x].color;
+
+							if (occupancy_status == false || (occupancy_status == true && occupancy_color != piece_color))
+							{
+								//Pushing the coordinates to highlight in the HTML file
+								int coordinates_h[2]{};
+								coordinates_h[0] = y;
+								coordinates_h[1] = x;
+								highlight_indeces.push_back(new_index);
+							}
 
 
 							//Adding information to the return log
