@@ -20,22 +20,64 @@ public:
 		string available_coordinates;
 
 		switch (piece_type) {
-			case 0: //Pawn case
+		case 0: //Pawn case
+		{
+			break;
+		}
+		case 1: //Knight case
+		{
+			available_coordinates += "Knight moves___\n";
+
+			int move_destinations[8][2] = {
+				{-2, -1}, {-2, 1}, {2, -1}, {2, 1},
+				{-1, -2}, {-1, 2}, {1, -2}, {1, 2} };
+
+			for (auto destination : move_destinations)
 			{
-				break;
+				int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
+					destination[0], destination[1]);
+
+
+				if (distance != 0)
+				{
+					int new_index = piece_y_coordinate * 8 + (piece_x_coordinate + 1) + distance;
+					if (new_index > 0 && new_index <= 64)
+					{
+						auto coordinates = moveWithAddition(piece_y_coordinate, piece_x_coordinate, distance);
+						int y = *(coordinates + 0);
+						int x = *(coordinates + 1);
+						if (y >= 0 && y <= 7 && x >= 0 && x <= 7)
+						{
+							//Pushing the coordinates to highlight in the HTML file
+							int coordinates_h[2]{};
+							coordinates_h[0] = y;
+							coordinates_h[1] = x;
+							highlight_indeces.push_back(new_index);
+
+
+							//Adding information to the return log
+							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+						}
+					}
+				}
 			}
-			case 1: //Knight case
+			break;
+		}
+		case 2: //Bishop case
+		{
+
+			available_coordinates += "Bishop moves___\n";
+
+			int move_destinations[8][2] = {
+				{-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
+
+			for (auto destination : move_destinations)
 			{
-				available_coordinates += "Knight moves___\n";
-
-				int move_destinations[8][2] = { 
-					{-2, -1}, {-2, 1}, {2, -1}, {2, 1},
-					{-1, -2}, {-1, 2}, {1, -2}, {1, 2} };
-
-				for (auto destination : move_destinations)
+				//Multiples the length of the direction 
+				for (int distance_increase = 1; distance_increase <= 7; distance_increase++)
 				{
 					int distance = calculateDistance(piece_y_coordinate, piece_x_coordinate,
-						destination[0], destination[1]);
+						destination[0]* distance_increase, destination[1]* distance_increase);
 
 
 					if (distance != 0)
@@ -61,28 +103,26 @@ public:
 						}
 					}
 				}
-				break;
 			}
-			case 2: //Bishop case
-			{
-				break;
-			}
-			case 3: //Rook case
-			{
-				break;
-			}
-			case 4: //Queen case
-			{
-				break;
-			}
-			case 5: //King case
-			{
-				break;
-			}
-			default: //In process
-			{
-				break;
-			}
+
+			break;
+		}
+		case 3: //Rook case
+		{
+			break;
+		}
+		case 4: //Queen case
+		{
+			break;
+		}
+		case 5: //King case
+		{
+			break;
+		}
+		default: //In process
+		{
+			break;
+		}
 		}
 		return available_coordinates;
 	}
@@ -105,7 +145,7 @@ public:
 		coordinates[1] = new_x;
 		coordinates[0] = new_y;
 
-		
+
 
 		return coordinates;
 	}
