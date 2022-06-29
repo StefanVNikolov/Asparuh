@@ -36,11 +36,20 @@ int main()
 
 	//Testing the move function	
 	chess_board.movePiece(chess_board.board[7][1], 6, 1);
+	chess_board.movePiece(chess_board.board[7][3], 4, 4);
 
 
 	Engine e;
-	string coordinates = e.checkAvailableMovesFor(chess_board, 6, 5);
-	cout << coordinates;
+	auto coordinates = e.checkAvailableMovesFor(chess_board, 4, 4);
+	for (int* coordinates_record : coordinates)
+	{
+		int y = coordinates_record[0];
+		int x = coordinates_record[1];
+		auto conventional_position = feeder.conventionalize_coordinates(coordinates_record);
+		char letter = conventional_position[0];
+		char number = conventional_position[1];
+		cout << letter << number << endl;
+	}
 
 	//Clear(); // Clear the console
 	vector <int> indeces_h = e.highlight_indeces;

@@ -84,9 +84,13 @@ public:
     {
         //conventional coordinates holder
         char coordinates[2];
+        int y = matrix_coordinates[0];
+        int x = matrix_coordinates[1];
         //Converting the 2D array coordinate to the ASCII char index
-        char x_coordinate = matrix_coordinates[0] + 65;
-        short int y_coordinate = 7 + (matrix_coordinates[1] + 49);
+        char x_coordinate = x + 65;
+        char y_coordinate = (8 - (y + 1)) + 49;
+        coordinates[0] = x_coordinate;
+        coordinates[1] = y_coordinate;
 
         return coordinates;
     }

@@ -14,19 +14,18 @@ public:
 	vector <int> highlight_indeces;
 
 	//Checks for legal moves for a given chess piece
-	string checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
+	vector <int*> checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
 	{
+		vector <int*> available_legal_moves;
+		available_legal_moves.reserve(49);
 		//Taking piece stats
 		int piece_type = board.board[piece_y_coordinate][piece_x_coordinate].type;
 		int piece_color = board.board[piece_y_coordinate][piece_x_coordinate].color;
 		bool piece_move_status = board.board[piece_y_coordinate][piece_x_coordinate].moved;
 
-		string available_coordinates;
-
 		switch (piece_type) {
 		case 0: //Pawn case
 		{
-			available_coordinates += "Pawn moves___\n";
 			int color_direction = 1;
 			if (piece_color == 1)
 			{
@@ -61,23 +60,23 @@ public:
 								if (occupancy_status == false)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
 									//Adding information to the return log
-									available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+									available_legal_moves.push_back(coordinates_h);
 								}
 							}
 							if (occupancy_status == true && occupancy_color != piece_color && forward_check == true)
 							{
 								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
+								int* coordinates_h = new int[2];
 								coordinates_h[0] = y;
 								coordinates_h[1] = x;
 								highlight_indeces.push_back(new_index);
 								//Adding information to the return log
-								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
+								available_legal_moves.push_back(coordinates_h);
 							}
 							forward_check = true;
 						}
@@ -90,7 +89,6 @@ public:
 		}
 		case 1: //Knight case
 		{
-			available_coordinates += "Knight moves___\n";
 
 			int move_destinations[8][2] = {
 				{-2, -1}, {-2, 1}, {2, -1}, {2, 1},
@@ -119,15 +117,13 @@ public:
 							if (occupancy_status == false || (occupancy_status == true && occupancy_color != piece_color))
 							{
 								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
+								int* coordinates_h = new int[2];
 								coordinates_h[0] = y;
 								coordinates_h[1] = x;
 								highlight_indeces.push_back(new_index);
+								//Adding information to the return log
+								available_legal_moves.push_back(coordinates_h);
 							}
-
-
-							//Adding information to the return log
-							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 						}
 					}
 				}
@@ -136,7 +132,6 @@ public:
 		}
 		case 2: //Bishop case
 		{
-			available_coordinates += "Bishop moves___\n";
 
 			int move_destinations[4][2] = {
 				{-1, -1}, {-1, 1}, {1, -1}, {1, 1} };
@@ -167,27 +162,27 @@ public:
 								if (occupancy_status == false)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 								}
 								else if(occupancy_status == true && occupancy_color != piece_color)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 									break;
 								}
 								else {
 									break;
 								}
-
-
-								//Adding information to the return log
-								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							}
 						}
 					}
@@ -198,7 +193,6 @@ public:
 		}
 		case 3: //Rook case
 		{
-			available_coordinates += "Rook moves___\n";
 
 			int move_destinations[4][2] = {
 				{-1, 0}, {1, 0}, {0, -1}, {0, 1} };
@@ -229,27 +223,27 @@ public:
 								if (occupancy_status == false)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 								}
 								else if (occupancy_status == true && occupancy_color != piece_color)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 									break;
 								}
 								else {
 									break;
 								}
-
-
-								//Adding information to the return log
-								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							}
 						}
 					}
@@ -260,7 +254,6 @@ public:
 		}
 		case 4: //Queen case
 		{
-			available_coordinates += "Queen moves___\n";
 
 			int move_destinations[8][2] = {
 				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},
@@ -292,27 +285,27 @@ public:
 								if (occupancy_status == false)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 								}
 								else if (occupancy_status == true && occupancy_color != piece_color)
 								{
 									//Pushing the coordinates to highlight in the HTML file
-									int coordinates_h[2]{};
+									int* coordinates_h = new int[2];
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_legal_moves.push_back(coordinates_h);
 									break;
 								}
 								else {
 									break;
 								}
-
-
-								//Adding information to the return log
-								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							}
 						}
 					}
@@ -322,8 +315,6 @@ public:
 		}
 		case 5: //King case
 		{
-
-			available_coordinates += "King moves___\n";
 
 			int move_destinations[8][2] = { 
 				{-1, -1}, {-1, 1}, {1, -1}, {1, 1},     
@@ -352,15 +343,13 @@ public:
 							if (occupancy_status == false || (occupancy_status == true && occupancy_color != piece_color))
 							{
 								//Pushing the coordinates to highlight in the HTML file
-								int coordinates_h[2]{};
+								int* coordinates_h = new int[2];
 								coordinates_h[0] = y;
 								coordinates_h[1] = x;
 								highlight_indeces.push_back(new_index);
+								//Adding information to the return log
+								available_legal_moves.push_back(coordinates_h);
 							}
-
-
-							//Adding information to the return log
-							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 						}
 					}
 				}
@@ -372,7 +361,7 @@ public:
 			break;
 		}
 		}
-		return available_coordinates;
+		return available_legal_moves;
 	}
 	//Allows to move a piece with only one number
 	//Example moveWithAddition(y, x, 19) will return the new coordinates
