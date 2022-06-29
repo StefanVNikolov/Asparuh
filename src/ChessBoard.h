@@ -66,6 +66,7 @@ public:
 
 		//Assigning the values to the board
 		board[y][x].exists = false;
+		board[y][x].moved = false;
 		board[y][x].type = NULL;
 		board[y][x].color = NULL;
 
@@ -92,6 +93,7 @@ public:
 		board[new_y][new_x].exists = true;
 		board[new_y][new_x].type = ptr_type;
 		board[new_y][new_x].color = ptr_color;
+		board[y][x].moved = true;
 
 		//Clearing the old position
 		removePiece(y, x);

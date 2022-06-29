@@ -34,25 +34,19 @@ int main()
 	PositionFeeder_Text feeder;
 	string feed_report = feeder.importInformation(chess_board);
 
-	cout << feed_report;
 	//Testing the move function	
-	cout << chess_board.movePiece(chess_board.board[6][4], 4, 4);
-	cout << chess_board.movePiece(chess_board.board[1][4], 3, 4);
-	cout << chess_board.movePiece(chess_board.board[7][1], 3, 3);
-	cout << chess_board.movePiece(chess_board.board[7][6], 2, 5);
-	cout << chess_board.movePiece(chess_board.board[0][0], 3, 1);
-	cout << chess_board.movePiece(chess_board.board[7][7], 4, 2);
-	cout << chess_board.movePiece(chess_board.board[0][3], 5, 4);
+	chess_board.movePiece(chess_board.board[7][1], 6, 1);
+
 
 	Engine e;
-	auto coordinates = e.checkAvailableMovesFor(chess_board, 6, 5);
+	string coordinates = e.checkAvailableMovesFor(chess_board, 6, 5);
+	cout << coordinates;
 
-	Clear(); // Clear the console
+	//Clear(); // Clear the console
 	vector <int> indeces_h = e.highlight_indeces;
 	sort(indeces_h.begin(), indeces_h.end());
 	HTML_viewer viewer;
 	string chess_possition = viewer.generateHTML_file(chess_board, indeces_h);
-	cout << chess_possition;
 	viewer.createHTML_file(chess_possition);
 		    
 }

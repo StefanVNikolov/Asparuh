@@ -19,6 +19,7 @@ public:
 		//Taking piece stats
 		int piece_type = board.board[piece_y_coordinate][piece_x_coordinate].type;
 		int piece_color = board.board[piece_y_coordinate][piece_x_coordinate].color;
+		bool piece_move_status = board.board[piece_y_coordinate][piece_x_coordinate].moved;
 
 		string available_coordinates;
 
@@ -64,6 +65,8 @@ public:
 									coordinates_h[0] = y;
 									coordinates_h[1] = x;
 									highlight_indeces.push_back(new_index);
+									//Adding information to the return log
+									available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 								}
 							}
 							if (occupancy_status == true && occupancy_color != piece_color && forward_check == true)
@@ -73,11 +76,9 @@ public:
 								coordinates_h[0] = y;
 								coordinates_h[1] = x;
 								highlight_indeces.push_back(new_index);
+								//Adding information to the return log
+								available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							}
-
-
-							//Adding information to the return log
-							available_coordinates += "[" + to_string(y) + ", " + to_string(x) + "]\n";
 							forward_check = true;
 						}
 					}

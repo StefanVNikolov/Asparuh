@@ -10,6 +10,7 @@ struct ChessPiece {
 	short int x_coordinate = NULL;  //[ 0-15 ]
 	short int y_coordinate = NULL;  //[ 0-15 ] 
 	bool color = NULL;              //[BLACK-0; WHITE-1]
+	bool moved = false;
 
 	// Movement constraints
 	bool straight = false;     //[UNABLE-0; ABLE-1]

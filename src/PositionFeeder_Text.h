@@ -79,5 +79,17 @@ public:
         return coordinates;
     }
 
+    // This function reverses the convert_coordinates function
+    char* conventionalize_coordinates(int* matrix_coordinates)
+    {
+        //conventional coordinates holder
+        char coordinates[2];
+        //Converting the 2D array coordinate to the ASCII char index
+        char x_coordinate = matrix_coordinates[0] + 65;
+        short int y_coordinate = 7 + (matrix_coordinates[1] + 49);
+
+        return coordinates;
+    }
+
 };
 
