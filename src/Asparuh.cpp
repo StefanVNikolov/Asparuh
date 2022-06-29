@@ -40,18 +40,36 @@ int main()
 
 
 	Engine e;
-	auto coordinates = e.checkAvailableMovesFor(chess_board, 4, 4);
-	for (int* coordinates_record : coordinates)
-	{
-		int y = coordinates_record[0];
-		int x = coordinates_record[1];
-		auto conventional_position = feeder.conventionalize_coordinates(coordinates_record);
-		char letter = conventional_position[0];
-		char number = conventional_position[1];
-		cout << letter << number << endl;
-	}
 
-	//Clear(); // Clear the console
+	Clear(); // Clear the console
+	auto coordinates_black = e.listAvailableMovesFor_color(chess_board, 0);
+	Clear(); // Clear the console
+	auto record = coordinates_black.begin();
+	while (record != coordinates_black.end()) 
+	{
+		int possition_index = record->first;
+		//converting the new index to a position
+		possition_index -= 1;
+		int x = possition_index - ((possition_index / 8) * 8);
+		int y = (possition_index - x) / 8;
+
+		auto possitions = record->second;
+		++record;
+
+		cout << specs.colors[chess_board.board[y][x].color] << " " << specs.types[chess_board.board[y][x].type] << "___\n";
+		for (auto move : possitions)
+		{
+			int* coordinates = new int[2];
+			coordinates[0] = move[0];
+			coordinates[1] = move[1];
+			auto conventional_coordinates = feeder.conventionalize_coordinates(coordinates);
+			char letter = conventional_coordinates[0];
+			char number = conventional_coordinates[1];
+			cout << "\t" << letter << number << endl;
+		}
+	}
+	
+
 	vector <int> indeces_h = e.highlight_indeces;
 	sort(indeces_h.begin(), indeces_h.end());
 	HTML_viewer viewer;

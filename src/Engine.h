@@ -3,6 +3,7 @@
 #include<vector>
 #include "structs.cpp"
 #include "ChessBoard.h"
+#include <map>
 using namespace std;
 
 #pragma once
@@ -10,11 +11,30 @@ using namespace std;
 class Engine
 {
 public:
+
+	//Generates a list of the addresses of pieces with certain color
+	vector <ChessPiece> pieceList(ChessBoard board, bool color)
+	{
+		vector <ChessPiece> pieces;
+		for (int y = 0; y < board.returnGridSize(); y++)
+		{
+			for (int x = 0; x < board.returnGridSize(); x++)
+			{
+				if (board.board[y][x].exists == true && board.board[y][x].color == color)
+				{
+					pieces.push_back(board.board[y][x]);
+				}
+			}
+		}
+		return pieces;
+
+	}
+
 	//Move highlighter holder
 	vector <int> highlight_indeces;
 
 	//Checks for legal moves for a given chess piece
-	vector <int*> checkAvailableMovesFor(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
+	vector <int*> checkAvailableMovesFor_piece(ChessBoard board, int piece_y_coordinate, int piece_x_coordinate)
 	{
 		vector <int*> available_legal_moves;
 		available_legal_moves.reserve(49);
@@ -363,6 +383,20 @@ public:
 		}
 		return available_legal_moves;
 	}
+
+	map<int, vector<int*>> listAvailableMovesFor_color(ChessBoard board, int color)
+	{
+		map<int, vector<int*>> AvailableMovesList;
+		auto pieces = pieceList(board, color);
+		for (auto piece : pieces)
+		{
+			vector <int*> current_piece_moves = checkAvailableMovesFor_piece(board, piece.y_coordinate, piece.x_coordinate);
+			int piece_possition_index = piece.y_coordinate * 8 + (piece.x_coordinate + 1);
+			AvailableMovesList.insert(pair<int, vector<int*>>(piece_possition_index, current_piece_moves));
+		}
+		return AvailableMovesList;
+	}
+
 	//Allows to move a piece with only one number
 	//Example moveWithAddition(y, x, 19) will return the new coordinates
 	int* moveWithAddition(int y, int x, int move_index)

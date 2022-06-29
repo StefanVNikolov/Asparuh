@@ -3,12 +3,11 @@ using namespace std;
 
 #pragma once
 struct ChessPiece {
-
 	bool exists = false;     //Changes on initialization
 
-	short int type = NULL;          //[PAWN-0; KNIGHT-1; BISHOP-2; ROOK-3; QUEEN-4; KING-5]
-	short int x_coordinate = NULL;  //[ 0-15 ]
-	short int y_coordinate = NULL;  //[ 0-15 ] 
+    int type = NULL;          //[PAWN-0; KNIGHT-1; BISHOP-2; ROOK-3; QUEEN-4; KING-5]
+	int x_coordinate = NULL;  //[ 0-15 ]
+	int y_coordinate = NULL;  //[ 0-15 ] 
 	bool color = NULL;              //[BLACK-0; WHITE-1]
 	bool moved = false;
 

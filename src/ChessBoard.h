@@ -18,18 +18,17 @@ public:
 
 	void _Init_()
 	{
-		//Creates a null piece (exists value is false)
-		ChessPiece null_piece;
 
 		//Feeds the array with the null piece
 		for (int current_y = 0; current_y < grid_size; current_y++)
 		{
 			for (int current_x = 0; current_x < grid_size; current_x++)
 			{
-				null_piece.exists = false;
-				null_piece.x_coordinate = current_x;
-				null_piece.y_coordinate = current_y;
-				board[current_y][current_x] = null_piece;
+				ChessPiece* null_piece = new ChessPiece;
+				null_piece -> exists = false;
+				null_piece -> x_coordinate = current_x;
+				null_piece -> y_coordinate = current_y;
+				board[current_y][current_x] = *null_piece;
 			}
 		}
 	}
