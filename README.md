@@ -5,7 +5,6 @@ Asparuh is an offline C++ console application
 
 - Give depth or a time limit
 - Get a binary or a .txt file containing a tree
-- ?Magic ?
 
 ## Features
 
